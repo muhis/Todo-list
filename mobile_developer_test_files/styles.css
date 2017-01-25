@@ -14,26 +14,23 @@
 }
 .project h3{
 	display: inline-block;
-	margin-left: 3px;
+	margin: 5px;
 	border: none;
+	font-size: 1.5em;
 }
-.project button{
+.project .btn{
 	display: none;
-	margin-left: 3px;
-	margin-right: 3px;
-	font-size: 11px;
-	
 }
-.project:hover button{
+.project:hover .btn{
 	display: inline;
 	position: relative;
 	left: 60vw;
 }
 .project:hover{
-	background-color: lightgrey;
+	background-color: rgb(105,210,231);
 	border-left-style: solid;
 	border-left-width: 3px;
-	border-left-color: blue;
+	border-left-color: rgb(190,242,2);
 
 	    -webkit-transition: background-color 0.50s ease-in-out;
        -moz-transition: background-color 0.50s ease-in-out;
@@ -49,4 +46,30 @@
 	border-left-style: solid;
 	border-left-width: 3px;
 	border-left-color: white;
+	margin: 5px;
+}
+#dataContent{
+	background-color: rgb(56,122,186);
+	margin: 0;
+	padding: 10px;
+	font-family: 'Libre Franklin', sans-serif;
+	color: white;
+
+}
+body{
+	background-color: : rgb(105,210,231);
+	margin: 0;
+}
+.btn {
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 21px;
+  background: #F38630;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #FA6900;
+  text-decoration: none;
 }

@@ -18,14 +18,14 @@ this.puke = function(){
 		callback(r);
   }
 
-	this.deleteProject = function(id){
+	this.deleteProject = function(id,callback){
     //There are more solutions for the deleting, which will be faster, and will be explained in an email.
     projects.forEach(function(project){
       if(project.id == id){
         arrayIndex = projects.indexOf(project);
         if(arrayIndex !== -1){
           projects.splice(arrayIndex,1);
-          refresh(projects);
+          model.loadProjects(callback);
           function sendDelete(){
             http.request('delete' + id);
           }
@@ -41,7 +41,9 @@ function Project(id,name,tasks) {
 	this.tasks = tasks
 
 	this.clone = function(){
-		return new Project(id,name,tasks)
+		projectString = JSON.stringify(this);
+		newProject = JSON.parse(projectString);
+		return new Project(newProject.id,newProject.name,newProject.tasks);
 	}
 }
 console.log("Project initialized")
@@ -70,6 +72,7 @@ var refresh = function(projects){
     projectDiv.id = projectItem.id;
     projectDiv.className = 'project'
     projectDiv.addEventListener('click', (function(){
+		//tasks hide on click.
 		if(document.getElementById(this.id)){
 		  if (document.getElementById(this.id).childNodes[2].className !== 'hide'){
 			document.getElementById(this.id).childNodes[2].className = 'hide';
@@ -82,14 +85,16 @@ var refresh = function(projects){
     var deleteButton = document.createElement('Button');
     deleteButton.innerHTML = "Delete project";
     deleteButton.addEventListener('click', (function(){
-      model.deleteProject(this.parentNode.id);
+      model.deleteProject(this.parentNode.id, function(projects){
+		    refresh(projects);
+			})
     }))
 
     //Header for the project
     var titleElm = document.createElement('H3');
     var titleText = document.createTextNode(projectItem.name);
 	titleElm.className = 'project';
-	
+
     //append every text for its respective parent
     titleElm.appendChild(titleText);
     projectDiv.appendChild(titleElm);
@@ -110,7 +115,7 @@ var refresh = function(projects){
     projectDiv.appendChild(taskMenu);
 	projectContainer = document.createElement('div')
 	projectContainer.className = 'container';
-	projectContainer.appendChild(projectDiv);                                                                                                                                                                                                                           
+	projectContainer.appendChild(projectDiv);
     document.getElementById('dataContent').appendChild(projectContainer);
   })
 }
