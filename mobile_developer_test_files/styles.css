@@ -1,16 +1,52 @@
 .hide{
-  opacity: 0;
-    -webkit-transition: opacity 0.25s ease-in;
-       -moz-transition: opacity 0.25s ease-in;
-        -ms-transition: opacity 0.25s ease-in;
-         -o-transition: opacity 0.25s ease-in;
-            transition: opacity 0.25s ease-in;
+	display: none;
+	opacity: 0;
+
 }
 .show{
-  opacity: 1;
-    -webkit-transition: opacity 0.25s ease-in;
-       -moz-transition: opacity 0.25s ease-in;
-        -ms-transition: opacity 0.25s ease-in;
-         -o-transition: opacity 0.25s ease-in;
-            transition: opacity 0.25s ease-in;
+	display: block;
+	opacity: 1;
+    -webkit-transition: opacity 1.50s ease-in;
+       -moz-transition: opacity 1.50s ease-in;
+        -ms-transition: opacity 1.50s ease-in;
+         -o-transition: opacity 1.50s ease-in;
+            transition: opacity 1.50s ease-in;
+}
+.project h3{
+	display: inline-block;
+	margin-left: 3px;
+	border: none;
+}
+.project button{
+	display: none;
+	margin-left: 3px;
+	margin-right: 3px;
+	font-size: 11px;
+	
+}
+.project:hover button{
+	display: inline;
+	position: relative;
+	left: 60vw;
+}
+.project:hover{
+	background-color: lightgrey;
+	border-left-style: solid;
+	border-left-width: 3px;
+	border-left-color: blue;
+
+	    -webkit-transition: background-color 0.50s ease-in-out;
+       -moz-transition: background-color 0.50s ease-in-out;
+        -ms-transition: background-color 0.50s ease-in-out;
+         -o-transition: background-color 0.50s ease-in-out;
+            transition: background-color 0.50s ease-in-out;
+}
+.breaker{
+	content: '';
+	display: block;
+}
+.project{
+	border-left-style: solid;
+	border-left-width: 3px;
+	border-left-color: white;
 }

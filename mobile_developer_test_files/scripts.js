@@ -70,12 +70,13 @@ var refresh = function(projects){
     projectDiv.id = projectItem.id;
     projectDiv.className = 'project'
     projectDiv.addEventListener('click', (function(){
-      if (document.getElementById(this.id).childNodes[1].className !== 'hide'){
-        document.getElementById(this.id).childNodes[1].className = 'hide';
-      }else{
-        document.getElementById(this.id).childNodes[1].className = 'show';
-      }
-
+		if(document.getElementById(this.id)){
+		  if (document.getElementById(this.id).childNodes[2].className !== 'hide'){
+			document.getElementById(this.id).childNodes[2].className = 'hide';
+		  }else{
+			document.getElementById(this.id).childNodes[2].className = 'show';
+		  }
+		}
     }))
     //Delete Button
     var deleteButton = document.createElement('Button');
@@ -87,9 +88,12 @@ var refresh = function(projects){
     //Header for the project
     var titleElm = document.createElement('H3');
     var titleText = document.createTextNode(projectItem.name);
+	titleElm.className = 'project';
+	
     //append every text for its respective parent
     titleElm.appendChild(titleText);
     projectDiv.appendChild(titleElm);
+	projectDiv.appendChild(deleteButton);
     //Task list
     var taskMenu = document.createElement('ul');
     taskMenu.className = 'hide';
@@ -104,7 +108,9 @@ var refresh = function(projects){
       taskMenu.appendChild(taskDiv);
     });
     projectDiv.appendChild(taskMenu);
-    projectDiv.appendChild(deleteButton);
-    document.getElementById('dataContent').appendChild(projectDiv);
+	projectContainer = document.createElement('div')
+	projectContainer.className = 'container';
+	projectContainer.appendChild(projectDiv);                                                                                                                                                                                                                           
+    document.getElementById('dataContent').appendChild(projectContainer);
   })
 }
