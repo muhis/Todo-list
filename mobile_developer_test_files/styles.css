@@ -18,6 +18,9 @@
 	border: none;
 	font-size: 1.5em;
 }
+.project ul{
+	padding-bottom: 3px;
+}
 .project .btn{
 	display: none;
 	position: relative;

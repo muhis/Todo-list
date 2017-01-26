@@ -64,13 +64,14 @@ this.puke = function(){
   }
 	//Load one project.
 	this.loadProject = function(id,callback){
-		projects.forEach(function(project){
+		projects.some(function(project){
 			if(project.id == id){
 				arrayIndex = projects.indexOf(project);
         if(arrayIndex !== -1){
 					callback(project);
         }
 			}
+			return true;
 		})
 	}
 	this.loadTasks = function(id,callback){
@@ -80,7 +81,7 @@ this.puke = function(){
 	}
 	this.deleteProject = function(id,callback){
     //There are more solutions for the deleting, which will be faster, and will be explained in an email.
-    projects.forEach(function(project){
+    projects.some(function(project){
       if(project.id == id){
         arrayIndex = projects.indexOf(project);
         if(arrayIndex !== -1){
@@ -90,6 +91,7 @@ this.puke = function(){
           function sendDelete(){
             http.request('delete' + id);
           }
+					return true;
         }
       }
     })
