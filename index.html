@@ -62,7 +62,22 @@ this.puke = function(){
 
 		callback(r);
   }
-
+	//Load one project.
+	this.loadProject = function(id,callback){
+		projects.forEach(function(project){
+			if(project.id == id){
+				arrayIndex = projects.indexOf(project);
+        if(arrayIndex !== -1){
+					callback(project);
+        }
+			}
+		})
+	}
+	this.loadTasks = function(id,callback){
+		model.loadProject(id,function(project){
+			callback(project.tasks);
+		});
+	}
 	this.deleteProject = function(id,callback){
     //There are more solutions for the deleting, which will be faster, and will be explained in an email.
     projects.forEach(function(project){
@@ -87,10 +102,11 @@ function Project(id,name,tasks) {
 	this.tasks = tasks
 
 	this.clone = function(){
-		projectString = JSON.stringify(this);
-		newProject = JSON.parse(projectString);
+
+		newProject = $.extend(true,{},this);
 		return new Project(newProject.id,newProject.name,newProject.tasks);
 	}
+
 }
 console.log("Project initialized")
 
